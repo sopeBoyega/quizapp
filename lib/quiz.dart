@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:quizapp/data/questions.dart';
 import 'package:quizapp/questions_screen.dart';
+import 'package:quizapp/result_screen.dart';
 
 import 'package:quizapp/start_screen.dart';
 
@@ -12,24 +14,54 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
+ List<String> selectedAnswers = [];
+
 var activeScreen = "start-screen";
 
 
+void chooseAnswer(String answer) {
+ selectedAnswers.add(answer);
 
-
-
+ if (selectedAnswers.length == questions.length) {
+   setState(() {
+    activeScreen = "result-screen";
+   });
+ }
+}
 
 // Available in Stateful Widgets
 void switchScreen() {
   // When Setstate is called Flutter re-executes the build method and rusn the code in it again
   // If they are any diffrences , it updates the UI
   setState(() {
-    activeScreen = "questions-screen" ;
+    if (activeScreen == "start-screen") {
+       activeScreen = "questions-screen" ;
+    }
+    else  if (activeScreen == "result-screen") {
+      activeScreen = "start-screen";
+    }
+
   });
 }
 
 @override
   Widget build(BuildContext context) {
+
+    Widget screenWidget = StartScreen(switchScreen);
+
+    if ( activeScreen == 'questions-screen') {
+      screenWidget = QuestionsScreen(onSelectAnswer: chooseAnswer);
+    }
+    if ( activeScreen == 'result-screen') {
+      screenWidget = ResultScreen(switchScreen,chosenAnswers: selectedAnswers);
+    }
+
+    if (activeScreen == 'start-screen') {
+      selectedAnswers = [];
+    screenWidget = StartScreen(switchScreen);
+    }
+
+
    return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -46,7 +78,7 @@ void switchScreen() {
                 end: Alignment.bottomRight,
               ),
             ),
-            child: activeScreen == "start-screen" ? StartScreen(switchScreen) : QuestionsScreen(),
+            child: screenWidget,
           ),
         ),
       ),
