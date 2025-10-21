@@ -1,7 +1,7 @@
 import 'package:quizapp/models/quiz_question.dart';
 
 
-const questions = [
+final questions = [
   QuizQuestion(
     'What are the main building blocks of Flutter UIs?',
     [
@@ -51,6 +51,42 @@ const questions = [
       'By calling updateData()',
       'By calling updateUI()',
       'By calling updateState()',
+    ],
+  ),
+  QuizQuestion(
+    'What does the pubspec.yaml file contain?',
+    [
+      'All of these',
+      'Dependencies',
+      'Asset Declarations',
+      'Font Declarations',
+    ],
+  ),
+  QuizQuestion(
+    'Andriod folder does not contain?',
+    [
+      'Pod file',
+      'Gradle files',
+      'Manifest file',
+      'Android app folder',
+    ],
+  ),
+  QuizQuestion(
+    'MaterialPageRoute is?',
+    [
+      'To change a whole page',
+      'To define route',
+      'To naviagte between pages',
+      'To control the routes',
+    ],
+  ),
+  QuizQuestion(
+    'Which of the following are reasons for an asynchronous computation?',
+    [
+      'Weather data from an API',
+      'Printing a statement',
+      'Addition of two numbers',
+      'Data type conversion',
     ],
   ),
 ];

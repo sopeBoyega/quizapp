@@ -1,13 +1,13 @@
 class QuizQuestion {
-  const QuizQuestion(this.text, this.answers);
+  QuizQuestion(this.text, this.answers) {
+    // Shuffle answers once when the question is created
+    _shuffledAnswers = List.of(answers);
+    _shuffledAnswers.shuffle();
+  }
 
   final String text;
   final List<String> answers;
+  late final List<String> _shuffledAnswers;
 
-// Below is a syntax of a getter method
-  List<String> get  shuffledAnswers {
-    final shuffledList = List.of(answers);
-    shuffledList.shuffle();
-    return shuffledList;
-  }
+  List<String> get shuffledAnswers => _shuffledAnswers;
 }

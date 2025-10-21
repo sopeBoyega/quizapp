@@ -62,9 +62,8 @@ void switchScreen() {
     }
 
 
-   return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+   return 
+       Scaffold(
         backgroundColor: Color.fromARGB(255, 63, 5, 120),
         body: Center(
           child: Container(
@@ -81,7 +80,6 @@ void switchScreen() {
             child: screenWidget,
           ),
         ),
-      ),
-    );
+      );
   }
 }
